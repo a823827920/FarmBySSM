@@ -26,4 +26,9 @@ public class EssayServiceImpl implements EssayService {
     public Integer updateEssayById(Essay essay) {
         return essayMapper.updateByPrimaryKeySelective(essay);
     }
+
+    @Override
+    public Integer insertEssay(Essay essay) {
+        return essayMapper.insertSelective(essay);
+    }
 }

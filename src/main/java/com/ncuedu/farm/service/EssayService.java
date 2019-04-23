@@ -12,4 +12,6 @@ public interface EssayService {
     Essay queryEssayById(Integer id);
 
     Integer updateEssayById(Essay essay);
+
+    Integer insertEssay(Essay essay);
 }

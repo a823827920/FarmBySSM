@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncuedu.farm.mapper.OrderCustomMapper">
+    <resultMap id="BaseResultMap" type="com.ncuedu.farm.vo.OrderCustom">
+        <id column="order_id" jdbcType="INTEGER" property="orderId" />
+        <result column="order_downdate" jdbcType="TIMESTAMP" property="orderDowndate" />
+        <result column="order_name" jdbcType="VARCHAR" property="orderName" />
+        <result column="order_tel" jdbcType="VARCHAR" property="orderTel" />
+        <result column="order_addr" jdbcType="VARCHAR" property="orderAddr" />
+        <result column="crop_weight" property="cropWeight"/>
+        <result column="plant_name" property="plantName"/>
+    </resultMap>
+    <sql id="baseColumn">
+        order_id,order_downdate,a.crop_id,order_name,order_tel,order_addr,plant_name,crop_weight
+    </sql>
+    <select id="queryOrderCustomsByPage" resultMap="BaseResultMap">
+        select <include refid="baseColumn"/> from `order` as a
+          left join crop as b on a.crop_id=b.crop_id
+          left join plant as c on b.plant_id=c.plant_id
+          limit #{index},#{limit}
+    </select>
+</mapper>

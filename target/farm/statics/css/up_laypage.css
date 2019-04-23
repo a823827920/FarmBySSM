@@ -1,0 +1,8 @@
+.layui-laypage a, .layui-laypage span{
+	margin:0 14px 5px 0 !important;
+	padding: 0 11px;
+	border-radius: 50%;
+}
+.layui-laypage .layui-laypage-curr .layui-laypage-em{
+	border-radius: 50%;
+}

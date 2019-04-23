@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncuedu.farm.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.ncuedu.farm.pojo.Order">
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="order_downdate" jdbcType="TIMESTAMP" property="orderDowndate" />
+    <result column="crop_id" jdbcType="INTEGER" property="cropId" />
+    <result column="order_name" jdbcType="VARCHAR" property="orderName" />
+    <result column="order_tel" jdbcType="VARCHAR" property="orderTel" />
+    <result column="order_addr" jdbcType="VARCHAR" property="orderAddr" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    order_id, order_downdate, crop_id, order_name, order_tel, order_addr
+  </sql>
+  <select id="selectByExample" parameterType="com.ncuedu.farm.pojo.OrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `order`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from `order`
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ncuedu.farm.pojo.OrderExample">
+    delete from `order`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ncuedu.farm.pojo.Order">
+    insert into `order` (order_id, order_downdate, crop_id,
+      order_name, order_tel, order_addr
+      )
+    values (#{orderId,jdbcType=INTEGER}, #{orderDowndate,jdbcType=TIMESTAMP}, #{cropId,jdbcType=INTEGER}, 
+      #{orderName,jdbcType=VARCHAR}, #{orderTel,jdbcType=VARCHAR}, #{orderAddr,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ncuedu.farm.pojo.Order">
+    insert into `order`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="orderDowndate != null">
+        order_downdate,
+      </if>
+      <if test="cropId != null">
+        crop_id,
+      </if>
+      <if test="orderName != null">
+        order_name,
+      </if>
+      <if test="orderTel != null">
+        order_tel,
+      </if>
+      <if test="orderAddr != null">
+        order_addr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderDowndate != null">
+        #{orderDowndate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cropId != null">
+        #{cropId,jdbcType=INTEGER},
+      </if>
+      <if test="orderName != null">
+        #{orderName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTel != null">
+        #{orderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAddr != null">
+        #{orderAddr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ncuedu.farm.pojo.OrderExample" resultType="java.lang.Long">
+    select count(*) from `order`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update `order`
+    <set>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderDowndate != null">
+        order_downdate = #{record.orderDowndate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cropId != null">
+        crop_id = #{record.cropId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderName != null">
+        order_name = #{record.orderName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderTel != null">
+        order_tel = #{record.orderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderAddr != null">
+        order_addr = #{record.orderAddr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update `order`
+    set order_id = #{record.orderId,jdbcType=INTEGER},
+      order_downdate = #{record.orderDowndate,jdbcType=TIMESTAMP},
+      crop_id = #{record.cropId,jdbcType=INTEGER},
+      order_name = #{record.orderName,jdbcType=VARCHAR},
+      order_tel = #{record.orderTel,jdbcType=VARCHAR},
+      order_addr = #{record.orderAddr,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ncuedu.farm.pojo.Order">
+    update `order`
+    <set>
+      <if test="orderDowndate != null">
+        order_downdate = #{orderDowndate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cropId != null">
+        crop_id = #{cropId,jdbcType=INTEGER},
+      </if>
+      <if test="orderName != null">
+        order_name = #{orderName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTel != null">
+        order_tel = #{orderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAddr != null">
+        order_addr = #{orderAddr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ncuedu.farm.pojo.Order">
+    update `order`
+    set order_downdate = #{orderDowndate,jdbcType=TIMESTAMP},
+      crop_id = #{cropId,jdbcType=INTEGER},
+      order_name = #{orderName,jdbcType=VARCHAR},
+      order_tel = #{orderTel,jdbcType=VARCHAR},
+      order_addr = #{orderAddr,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>

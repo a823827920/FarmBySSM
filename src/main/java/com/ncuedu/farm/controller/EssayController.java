@@ -6,6 +6,7 @@ import com.ncuedu.farm.service.EssayService;
 import com.ncuedu.farm.vo.EssayCustom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -57,5 +58,12 @@ public class EssayController {
     @RequestMapping(value = "/user/writeEssay",method = RequestMethod.GET)
     public String writeEssay(){
         return "user/writeEssay";
+    }
+
+    @RequestMapping(value = "/user/essay",method = RequestMethod.POST)
+    @ResponseBody
+    public Integer insertEssay(@RequestBody Essay essay){
+        Integer result = essayService.insertEssay(essay);
+        return result;
     }
 }

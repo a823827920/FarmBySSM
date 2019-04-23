@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncuedu.farm.mapper.PlantCustomMapper">
+    <resultMap id="BaseResultMap" type="com.ncuedu.farm.vo.PlantCustom">
+        <id column="plant_id" jdbcType="INTEGER" property="plantId" />
+        <result column="plant_name" jdbcType="VARCHAR" property="plantName" />
+        <result column="plant_stock" jdbcType="INTEGER" property="plantStock" />
+        <result column="plant_saleprice" jdbcType="DECIMAL" property="plantSaleprice" />
+        <result column="plant_des" jdbcType="VARCHAR" property="plantDes" />
+        <result column="plant_orderprice" jdbcType="DECIMAL" property="plantOrderprice" />
+        <result column="cate_id" jdbcType="INTEGER" property="cateId" />
+        <result column="cate_name" property="cateName"/>
+        <result column="plant_img" jdbcType="VARCHAR" property="plantImg" />
+        <result column="plant_flag" jdbcType="TINYINT" property="plantFlag" />
+    </resultMap>
+    <sql id="baseColumn">
+        plant_id, plant_name, plant_stock,
+      plant_saleprice, plant_des, plant_orderprice,
+      plant.cate_id, cate_name,plant_img, plant_flag
+    </sql>
+    <select id="queryPlantCustoms" resultMap="BaseResultMap">
+        select <include refid="baseColumn"/>
+        from plant join cate
+        on plant.cate_id=cate.cate_id
+    </select>
+
+    <select id="selectByPage" resultMap="BaseResultMap">
+    select <include refid="baseColumn"/> from plant join cate
+        on plant.cate_id=cate.cate_id limit #{index},#{limit}
+  </select>
+</mapper>

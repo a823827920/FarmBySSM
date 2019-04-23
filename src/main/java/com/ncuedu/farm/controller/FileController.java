@@ -23,30 +23,6 @@ import java.util.*;
 @Controller
 public class FileController {
 
-
-    /*public Map<String,Object> upload(HttpServletRequest request) throws Exception {
-        Map<String,Object> map=new HashMap<>();
-        DiskFileItemFactory factory=new DiskFileItemFactory();
-        ServletFileUpload upload=new ServletFileUpload(factory);
-        List<FileItem> items= null;
-        try {
-            items = upload.parseRequest(request);
-        } catch (FileUploadException e) {
-            e.printStackTrace();
-        }
-        Iterator<FileItem> i=items.iterator();
-        String path="D:\\upload\\";
-        while(i.hasNext())
-        {
-            FileItem fi=(FileItem)i.next();
-            String fileName=fi.getName();
-            File saveFile=new File(path, fileName);
-            fi.write(saveFile);
-            map.put("code", 0);
-            map.put("data", fileName);
-        }
-        return map;
-    }*/
     @RequestMapping("/file/upload")
     @ResponseBody
     public Map<String,Object> fileupload(MultipartFile file) throws IOException {

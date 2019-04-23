@@ -1,0 +1,27 @@
+.layui-tab-item li{
+	display: inline-block;
+	margin-right: 10px;
+}
+.layui-tab-item li label{
+	display: inline-block;
+	border: 0.5px solid rgb(216, 216, 216);
+	border-radius: 3px;
+	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 2px;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 600;
+	padding: 10px 25px;
+}
+.layui-tab-item input:checked+label{
+	background-color: #009E94;
+	color: white !important;
+}
+.layui-tab-item input{
+	display: none;
+}
+.layui-tab{
+	height: 160px;
+}
+#laypage{
+	text-align: center;
+}

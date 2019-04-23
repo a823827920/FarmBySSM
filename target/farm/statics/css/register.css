@@ -1,0 +1,92 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.title{
+	line-height: 2.2em;
+	
+}
+.title>span:first-child{
+	font-weight: bold;
+	font-size: 26px;
+}
+.title>span:nth-child(2){
+	font-weight: bold;
+	font-size: 15px;
+}
+.title>span label{
+	color: #009688;
+}
+.title span{
+	display: block;
+}
+.conta{
+	width: 500px;
+	height: 240px;
+	padding: 30px;
+	background-color: white;
+}
+[class*=register]{
+	
+	width: 85%;
+	margin: 0 auto;
+	text-align: center;
+	height: 48px;
+	color: white;
+	font-weight: bold;
+	line-height: 48px;
+	cursor: pointer;
+}
+.tel_register{
+	margin-top: 30px;
+    background-color: #ff2e6b;
+}
+.email_register{
+	margin-top: 20px;
+    background-color: #19b019;
+}
+[class*=register] img{
+	width: 20px;
+	height: 20px;
+	position: relative;
+    top: 0px;
+    right: 2px;
+}
+.email_register img{
+	right: 6px;
+}
+.other_way{
+	font-weight: bold;
+	font-size: 15px;
+	cursor: pointer;
+	margin-top: 12px;
+	color:#009688;
+	text-align: center;
+}
+
+#isSame{
+	color: #FD482C;
+	position: absolute;
+	left: 380px;
+	top: 122px;
+	font-size: 13px;
+}
+
+#checkCode{
+	position: absolute;
+	top: 186px;
+	left: 223px;
+	font-size: 13px;
+	color: #FD482C;
+}
+#tologin{
+	cursor: pointer;
+}
+
+#isSameEmail{
+	color: #FD482C;
+	position: absolute;
+	left: 390px;
+	top: 116px;
+	font-size: 13px;
+}

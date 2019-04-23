@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncuedu.farm.mapper.CommentCustomMapper">
+    <resultMap id="BaseResultMap" type="com.ncuedu.farm.vo.CommentCustom">
+        <id column="comment_id" jdbcType="INTEGER" property="commentId" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="comment_content" jdbcType="VARCHAR" property="commentContent" />
+        <result column="comment_date" jdbcType="TIMESTAMP" property="commentDate" />
+        <result column="praise_num" jdbcType="INTEGER" property="praiseNum" />
+        <result column="essay_id" jdbcType="INTEGER" property="essayId" />
+        <result column="target_id" jdbcType="INTEGER" property="targetId" />
+        <result column="user_name" property="userName"/>
+        <result column="user_img" property="userImg"/>
+        <result column="user_name" property="targetName"/>
+    </resultMap>
+
+    <select id="selectCommentByEssayId" resultMap="BaseResultMap">
+        SELECT a.user_id,a.target_id,a.praise_num,a.comment_id,a.comment_date,a.comment_content,b.user_name as userName,b.user_img,c.user_name as targetName  from `comment` as a
+	LEFT JOIN `user` as b on a.user_id=b.user_id
+	LEFT JOIN `user` as c on a.target_id=c.user_id
+          where essay_id=#{essayId}
+    </select>
+
+    <select id="selectCommentCustomByCommentId" resultMap="BaseResultMap">
+         SELECT a.user_id,a.target_id,a.praise_num,a.comment_id,a.comment_date,a.comment_content,b.user_name as userName,b.user_img,c.user_name as targetName  from `comment` as a
+	LEFT JOIN `user` as b on a.user_id=b.user_id
+	LEFT JOIN `user` as c on a.target_id=c.user_id
+          where comment_id=#{commentId}
+    </select>
+</mapper>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncuedu.farm.mapper.OperationMapper">
+  <resultMap id="BaseResultMap" type="com.ncuedu.farm.pojo.Operation">
+    <id column="operation_id" jdbcType="INTEGER" property="operationId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="operation_type" jdbcType="TINYINT" property="operationType" />
+    <result column="operation_date" jdbcType="TIMESTAMP" property="operationDate" />
+    <result column="field_id" jdbcType="INTEGER" property="fieldId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    operation_id, user_id, operation_type, operation_date, field_id
+  </sql>
+  <select id="selectByExample" parameterType="com.ncuedu.farm.pojo.OperationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from operation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from operation
+    where operation_id = #{operationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from operation
+    where operation_id = #{operationId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ncuedu.farm.pojo.OperationExample">
+    delete from operation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ncuedu.farm.pojo.Operation">
+    insert into operation (operation_id, user_id, operation_type, 
+      operation_date, field_id)
+    values (#{operationId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{operationType,jdbcType=TINYINT}, 
+      #{operationDate,jdbcType=TIMESTAMP}, #{fieldId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ncuedu.farm.pojo.Operation">
+    insert into operation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="operationId != null">
+        operation_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="operationType != null">
+        operation_type,
+      </if>
+      <if test="operationDate != null">
+        operation_date,
+      </if>
+      <if test="fieldId != null">
+        field_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="operationId != null">
+        #{operationId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="operationType != null">
+        #{operationType,jdbcType=TINYINT},
+      </if>
+      <if test="operationDate != null">
+        #{operationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fieldId != null">
+        #{fieldId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ncuedu.farm.pojo.OperationExample" resultType="java.lang.Long">
+    select count(*) from operation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update operation
+    <set>
+      <if test="record.operationId != null">
+        operation_id = #{record.operationId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.operationType != null">
+        operation_type = #{record.operationType,jdbcType=TINYINT},
+      </if>
+      <if test="record.operationDate != null">
+        operation_date = #{record.operationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fieldId != null">
+        field_id = #{record.fieldId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update operation
+    set operation_id = #{record.operationId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      operation_type = #{record.operationType,jdbcType=TINYINT},
+      operation_date = #{record.operationDate,jdbcType=TIMESTAMP},
+      field_id = #{record.fieldId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ncuedu.farm.pojo.Operation">
+    update operation
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="operationType != null">
+        operation_type = #{operationType,jdbcType=TINYINT},
+      </if>
+      <if test="operationDate != null">
+        operation_date = #{operationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fieldId != null">
+        field_id = #{fieldId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where operation_id = #{operationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ncuedu.farm.pojo.Operation">
+    update operation
+    set user_id = #{userId,jdbcType=INTEGER},
+      operation_type = #{operationType,jdbcType=TINYINT},
+      operation_date = #{operationDate,jdbcType=TIMESTAMP},
+      field_id = #{fieldId,jdbcType=INTEGER}
+    where operation_id = #{operationId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select * from operation limit #{index},#{limit}
+  </select>
+</mapper>

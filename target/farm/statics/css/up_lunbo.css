@@ -1,0 +1,23 @@
+.layui-carousel-ind li {
+	width: 50px;
+	height: 2px;
+	border-radius: 0;
+	opacity: 0.8;
+}
+
+.layui-carousel-ind {
+	text-align: left;
+	left: 10%;
+	top: -15%;
+}
+
+.layui-carousel-arrow {
+	background: none !important;
+}
+
+@media (max-width:768px) {
+	.layui-carousel-arrow {
+		display: none !important;
+	}
+
+}

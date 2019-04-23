@@ -1,0 +1,245 @@
+.essay_width {
+	width: 45%;
+}
+
+@media (max-width:768px) {
+	.essay_width {
+		width: 100%;
+	}
+
+	.show_content div {
+		font-size: 16px !important;
+	}
+}
+
+.essay_artist label:nth-child(1) {
+	display: inline-block;
+	width: 48px;
+	border-radius: 50%;
+	height: 48px;
+	background-color: whitesmoke;
+}
+
+.essay_artist label:nth-child(2) {
+	display: inline-block;
+	position: relative;
+	bottom: 17px;
+	left: 5px;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 48px;
+
+}
+
+.show_img img {
+	width: 100%;
+	display: inline-block;
+	margin: 20px 0;
+}
+
+.show_content label {
+	color: #484848 !important;
+	font-weight: bold !important;
+	font-size: 24px !important;
+	margin: 1em 0px !important
+}
+
+.show_content div {
+	font-size: 19px;
+	font-weight: 300 !important;
+	line-height: 2em !important;
+	color: #565a5c !important;
+	margin: 1.7em 0px !important;
+}
+
+.show_content p {
+	margin: 18px 0;
+}
+
+.show_praise label {
+	color: #008489;
+
+}
+
+.show_praise span {
+	display: block;
+	margin: 40px auto;
+	width: 30px;
+	height: 30px;
+	padding: 20px;
+	background-color: #dbdbdb;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+img {
+	width: 100%;
+}
+
+.show_praise span img {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.to_comment {
+	width: 100%;
+	border: 2px solid #DBDBDB;
+	padding: 10px;
+	position: relative;
+}
+
+.to_comment form {
+	position: relative;
+	top: 15px;
+	display: inline-block;
+	vertical-align: top;
+	width: 80%;
+}
+
+.to_comment label {
+	display: inline-block;
+	vertical-align: top;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+}
+
+.show_comment {
+	width: 100%;
+}
+
+.totals {
+	margin: 20px 0;
+	font-family: Circular, PingFang-SC, "Hiragino Sans GB", 微软雅黑, "Microsoft YaHei", "Heiti SC" !important;
+	font-size: 16px;
+	font-weight: 800 !important;
+	line-height: 1.28571em !important;
+	color: rgb(72, 72, 72);
+}
+
+/* textarea:focus{
+	height: 150px;
+}
+textarea:focus+div{
+	display: inline-block;
+} */
+
+textarea {
+	display: inline-block;
+	width: 100%;
+	font-size: 16px;
+	border: none;
+	margin-left: 20px;
+	margin-bottom: 45px;
+	height: 21px;
+}
+
+textarea::-webkit-input-placeholder {
+	color: #484848;
+}
+
+textarea::-moz-placeholder {
+	//不知道为何火狐的placeholder的颜色是粉红色，怎么改都不行，希望有大牛路过帮忙指点
+	color: #484848;
+}
+
+textarea:-ms-input-placeholder {
+	//由于我的IE刚好是IE9，支持不了placeholder，所以也测试不了(⊙﹏⊙)，有IE10以上的娃可以帮我试试
+	color: #484848;
+}
+
+.dbtn {
+	display: none;
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+}
+
+.dbtn button {
+	border: 1px solid #008489;
+	padding: 8px 18px;
+	background-color: white;
+	font-weight: 600;
+	border-radius: 5px;
+	color: #008489;
+	cursor: pointer;
+}
+
+.dbtn button:nth-child(2) {
+	opacity: 0.6;
+	color: white !important;
+	background-color: #008489 !important;
+}
+
+.comments {
+	width: 100%;
+	margin-top: 40px;
+}
+
+.one_comment {
+	width: 100%;
+}
+
+.one_comment span:nth-of-type(1) {
+	display: inline-block;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+}
+
+.one_comment span:nth-of-type(2) {
+	display: inline-block;
+	margin-left: 10px;
+	vertical-align: top;
+
+}
+
+.one_comment span:nth-of-type(2) label {
+	display: block;
+	margin-bottom: 5px;
+	word-wrap: break-word !important;
+	font-family: Circular, "PingFang-SC", "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Heiti SC" !important;
+	font-size: 14px !important;
+	font-weight: 400 !important;
+	line-height: 1.2857142857142858em !important;
+	color: #484848 !important;
+}
+
+.one_comment img {
+	width: 100%;
+}
+
+.one_comment>div:nth-of-type(1) {
+	margin-top: 10px;
+	position: absolute;
+	right: 0;
+}
+
+.one_comment>div label:last-of-type {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	vertical-align: top;
+}
+
+.one_comment>div:nth-of-type(1) {
+	display: inline-block;
+}
+
+/* .one_comment>div:first-of-type{
+	position: relative;
+	top: 10px;
+} */
+.comment_content {
+	margin-top: 10px;
+	font-weight: normal !important;
+    font-size: 16px !important;
+    line-height: 1.7em !important;
+    letter-spacing: normal !important;
+    font-family: Circular, PingFang-SC, "Hiragino Sans GB", 微软雅黑, "Microsoft YaHei", "Heiti SC" !important;
+    color: rgb(72, 72, 72) !important;
+}
+label>label{
+	display: inline-block !important;
+	 margin-left: 5px;
+}

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncuedu.farm.mapper.DiaryMapper">
+  <resultMap id="BaseResultMap" type="com.ncuedu.farm.pojo.Diary">
+    <id column="diary_id" jdbcType="INTEGER" property="diaryId" />
+    <result column="diary_time" jdbcType="TIMESTAMP" property="diaryTime" />
+    <result column="field_id" jdbcType="INTEGER" property="fieldId" />
+    <result column="plant_height" jdbcType="VARCHAR" property="plantHeight" />
+    <result column="field_state" jdbcType="VARCHAR" property="fieldState" />
+    <result column="insect_state" jdbcType="VARCHAR" property="insectState" />
+    <result column="grass_state" jdbcType="VARCHAR" property="grassState" />
+    <result column="plant_growday" jdbcType="INTEGER" property="plantGrowday" />
+    <result column="diary_img1" jdbcType="VARCHAR" property="diaryImg1" />
+    <result column="diary_img2" jdbcType="VARCHAR" property="diaryImg2" />
+    <result column="diary_img3" jdbcType="VARCHAR" property="diaryImg3" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    diary_id, diary_time, field_id, plant_height, field_state, insect_state, grass_state, 
+    plant_growday, diary_img1, diary_img2, diary_img3
+  </sql>
+  <select id="selectByExample" parameterType="com.ncuedu.farm.pojo.DiaryExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from diary
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from diary
+    where diary_id = #{diaryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from diary
+    where diary_id = #{diaryId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ncuedu.farm.pojo.DiaryExample">
+    delete from diary
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ncuedu.farm.pojo.Diary">
+    insert into diary (diary_id, diary_time, field_id, 
+      plant_height, field_state, insect_state, 
+      grass_state, plant_growday, diary_img1, 
+      diary_img2, diary_img3)
+    values (#{diaryId,jdbcType=INTEGER}, #{diaryTime,jdbcType=TIMESTAMP}, #{fieldId,jdbcType=INTEGER}, 
+      #{plantHeight,jdbcType=VARCHAR}, #{fieldState,jdbcType=VARCHAR}, #{insectState,jdbcType=VARCHAR}, 
+      #{grassState,jdbcType=VARCHAR}, #{plantGrowday,jdbcType=INTEGER}, #{diaryImg1,jdbcType=VARCHAR}, 
+      #{diaryImg2,jdbcType=VARCHAR}, #{diaryImg3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ncuedu.farm.pojo.Diary">
+    insert into diary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="diaryId != null">
+        diary_id,
+      </if>
+      <if test="diaryTime != null">
+        diary_time,
+      </if>
+      <if test="fieldId != null">
+        field_id,
+      </if>
+      <if test="plantHeight != null">
+        plant_height,
+      </if>
+      <if test="fieldState != null">
+        field_state,
+      </if>
+      <if test="insectState != null">
+        insect_state,
+      </if>
+      <if test="grassState != null">
+        grass_state,
+      </if>
+      <if test="plantGrowday != null">
+        plant_growday,
+      </if>
+      <if test="diaryImg1 != null">
+        diary_img1,
+      </if>
+      <if test="diaryImg2 != null">
+        diary_img2,
+      </if>
+      <if test="diaryImg3 != null">
+        diary_img3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="diaryId != null">
+        #{diaryId,jdbcType=INTEGER},
+      </if>
+      <if test="diaryTime != null">
+        #{diaryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fieldId != null">
+        #{fieldId,jdbcType=INTEGER},
+      </if>
+      <if test="plantHeight != null">
+        #{plantHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldState != null">
+        #{fieldState,jdbcType=VARCHAR},
+      </if>
+      <if test="insectState != null">
+        #{insectState,jdbcType=VARCHAR},
+      </if>
+      <if test="grassState != null">
+        #{grassState,jdbcType=VARCHAR},
+      </if>
+      <if test="plantGrowday != null">
+        #{plantGrowday,jdbcType=INTEGER},
+      </if>
+      <if test="diaryImg1 != null">
+        #{diaryImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryImg2 != null">
+        #{diaryImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryImg3 != null">
+        #{diaryImg3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ncuedu.farm.pojo.DiaryExample" resultType="java.lang.Long">
+    select count(*) from diary
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update diary
+    <set>
+      <if test="record.diaryId != null">
+        diary_id = #{record.diaryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.diaryTime != null">
+        diary_time = #{record.diaryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fieldId != null">
+        field_id = #{record.fieldId,jdbcType=INTEGER},
+      </if>
+      <if test="record.plantHeight != null">
+        plant_height = #{record.plantHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldState != null">
+        field_state = #{record.fieldState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.insectState != null">
+        insect_state = #{record.insectState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.grassState != null">
+        grass_state = #{record.grassState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantGrowday != null">
+        plant_growday = #{record.plantGrowday,jdbcType=INTEGER},
+      </if>
+      <if test="record.diaryImg1 != null">
+        diary_img1 = #{record.diaryImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diaryImg2 != null">
+        diary_img2 = #{record.diaryImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diaryImg3 != null">
+        diary_img3 = #{record.diaryImg3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update diary
+    set diary_id = #{record.diaryId,jdbcType=INTEGER},
+      diary_time = #{record.diaryTime,jdbcType=TIMESTAMP},
+      field_id = #{record.fieldId,jdbcType=INTEGER},
+      plant_height = #{record.plantHeight,jdbcType=VARCHAR},
+      field_state = #{record.fieldState,jdbcType=VARCHAR},
+      insect_state = #{record.insectState,jdbcType=VARCHAR},
+      grass_state = #{record.grassState,jdbcType=VARCHAR},
+      plant_growday = #{record.plantGrowday,jdbcType=INTEGER},
+      diary_img1 = #{record.diaryImg1,jdbcType=VARCHAR},
+      diary_img2 = #{record.diaryImg2,jdbcType=VARCHAR},
+      diary_img3 = #{record.diaryImg3,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ncuedu.farm.pojo.Diary">
+    update diary
+    <set>
+      <if test="diaryTime != null">
+        diary_time = #{diaryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fieldId != null">
+        field_id = #{fieldId,jdbcType=INTEGER},
+      </if>
+      <if test="plantHeight != null">
+        plant_height = #{plantHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldState != null">
+        field_state = #{fieldState,jdbcType=VARCHAR},
+      </if>
+      <if test="insectState != null">
+        insect_state = #{insectState,jdbcType=VARCHAR},
+      </if>
+      <if test="grassState != null">
+        grass_state = #{grassState,jdbcType=VARCHAR},
+      </if>
+      <if test="plantGrowday != null">
+        plant_growday = #{plantGrowday,jdbcType=INTEGER},
+      </if>
+      <if test="diaryImg1 != null">
+        diary_img1 = #{diaryImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryImg2 != null">
+        diary_img2 = #{diaryImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryImg3 != null">
+        diary_img3 = #{diaryImg3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where diary_id = #{diaryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ncuedu.farm.pojo.Diary">
+    update diary
+    set diary_time = #{diaryTime,jdbcType=TIMESTAMP},
+      field_id = #{fieldId,jdbcType=INTEGER},
+      plant_height = #{plantHeight,jdbcType=VARCHAR},
+      field_state = #{fieldState,jdbcType=VARCHAR},
+      insect_state = #{insectState,jdbcType=VARCHAR},
+      grass_state = #{grassState,jdbcType=VARCHAR},
+      plant_growday = #{plantGrowday,jdbcType=INTEGER},
+      diary_img1 = #{diaryImg1,jdbcType=VARCHAR},
+      diary_img2 = #{diaryImg2,jdbcType=VARCHAR},
+      diary_img3 = #{diaryImg3,jdbcType=VARCHAR}
+    where diary_id = #{diaryId,jdbcType=INTEGER}
+  </update>
+</mapper>

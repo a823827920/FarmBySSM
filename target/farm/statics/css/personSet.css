@@ -1,0 +1,85 @@
+.upload_img {
+	width: 400px;
+	text-align: center;
+	height: 350px;
+	background: #F2F2F5;
+	padding: 25px;
+	box-sizing: border-box;
+}
+
+.upload_img p {
+	font-size: 0.8em;
+	color: #988e7b;
+}
+
+.upload_img img {
+	width: 200px;
+}
+
+.upload_img span {
+	width: 200px;
+	height: 200px;
+	display: inline-block;
+	overflow: hidden;
+	border-radius: 50%;
+	margin-top: 20px;
+}
+.tip_box{
+	width: 70%;
+	margin: 0 15%;
+	height: 500px;
+	text-align: center;
+	padding: 130px;
+	box-sizing: border-box;
+	font-size: 2em;
+}
+.tip_box button{
+	position: relative;
+	top: 0.8em;
+}
+.index_menu {
+	background-color: rgb(57, 61, 73);
+	height: 50px;
+	padding: 0px 0;
+	margin-bottom: 10px;
+}
+.foot_box {
+	background-color: #f2f2f2;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	height: 2.5em;
+	line-height: 2.5em;
+	border-top:2px solid #a8a8a8;
+}
+
+.pcont {
+	height: 500px;
+	width: 70%;
+	margin: 0 15%;
+}
+input{
+	border-color: #edefed;
+}
+
+.rightDiv {
+	display: inline-block;
+	width: 69%;
+	margin: 0 15%;
+	background-color: #fff;
+	height: 500px;
+	border: 1px solid #edefed;
+}
+.to_space{
+	width: 100%;
+	height: 100px;
+	border-bottom: 1px solid #edefed;
+	margin-bottom: 20px;
+}
+.head_menu label{
+	color: #000000;
+}
+.search_box{
+	box-shadow: 1px 1px 4px 0px #00000059;
+}

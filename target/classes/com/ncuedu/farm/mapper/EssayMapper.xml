@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncuedu.farm.mapper.EssayMapper">
+  <resultMap id="BaseResultMap" type="com.ncuedu.farm.pojo.Essay">
+    <id column="essay_id" jdbcType="INTEGER" property="essayId" />
+    <result column="essay_title" jdbcType="VARCHAR" property="essayTitle" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="essay_content" jdbcType="VARCHAR" property="essayContent" />
+    <result column="praise_num" jdbcType="INTEGER" property="praiseNum" />
+    <result column="essay_img1" jdbcType="VARCHAR" property="essayImg1" />
+    <result column="essay_img2" jdbcType="VARCHAR" property="essayImg2" />
+    <result column="essay_img3" jdbcType="VARCHAR" property="essayImg3" />
+    <result column="essay_img4" jdbcType="VARCHAR" property="essayImg4" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    essay_id, essay_title, user_id, essay_content, praise_num, essay_img1, essay_img2, 
+    essay_img3, essay_img4
+  </sql>
+  <select id="selectByExample" parameterType="com.ncuedu.farm.pojo.EssayExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from essay
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from essay
+    where essay_id = #{essayId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from essay
+    where essay_id = #{essayId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ncuedu.farm.pojo.EssayExample">
+    delete from essay
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ncuedu.farm.pojo.Essay">
+    insert into essay (essay_id, essay_title, user_id, 
+      essay_content, praise_num, essay_img1, 
+      essay_img2, essay_img3, essay_img4
+      )
+    values (#{essayId,jdbcType=INTEGER}, #{essayTitle,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{essayContent,jdbcType=VARCHAR}, #{praiseNum,jdbcType=INTEGER}, #{essayImg1,jdbcType=VARCHAR}, 
+      #{essayImg2,jdbcType=VARCHAR}, #{essayImg3,jdbcType=VARCHAR}, #{essayImg4,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ncuedu.farm.pojo.Essay">
+    insert into essay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="essayId != null">
+        essay_id,
+      </if>
+      <if test="essayTitle != null">
+        essay_title,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="essayContent != null">
+        essay_content,
+      </if>
+      <if test="praiseNum != null">
+        praise_num,
+      </if>
+      <if test="essayImg1 != null">
+        essay_img1,
+      </if>
+      <if test="essayImg2 != null">
+        essay_img2,
+      </if>
+      <if test="essayImg3 != null">
+        essay_img3,
+      </if>
+      <if test="essayImg4 != null">
+        essay_img4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="essayId != null">
+        #{essayId,jdbcType=INTEGER},
+      </if>
+      <if test="essayTitle != null">
+        #{essayTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="essayContent != null">
+        #{essayContent,jdbcType=VARCHAR},
+      </if>
+      <if test="praiseNum != null">
+        #{praiseNum,jdbcType=INTEGER},
+      </if>
+      <if test="essayImg1 != null">
+        #{essayImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="essayImg2 != null">
+        #{essayImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="essayImg3 != null">
+        #{essayImg3,jdbcType=VARCHAR},
+      </if>
+      <if test="essayImg4 != null">
+        #{essayImg4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ncuedu.farm.pojo.EssayExample" resultType="java.lang.Long">
+    select count(*) from essay
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update essay
+    <set>
+      <if test="record.essayId != null">
+        essay_id = #{record.essayId,jdbcType=INTEGER},
+      </if>
+      <if test="record.essayTitle != null">
+        essay_title = #{record.essayTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.essayContent != null">
+        essay_content = #{record.essayContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.praiseNum != null">
+        praise_num = #{record.praiseNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.essayImg1 != null">
+        essay_img1 = #{record.essayImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.essayImg2 != null">
+        essay_img2 = #{record.essayImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.essayImg3 != null">
+        essay_img3 = #{record.essayImg3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.essayImg4 != null">
+        essay_img4 = #{record.essayImg4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update essay
+    set essay_id = #{record.essayId,jdbcType=INTEGER},
+      essay_title = #{record.essayTitle,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      essay_content = #{record.essayContent,jdbcType=VARCHAR},
+      praise_num = #{record.praiseNum,jdbcType=INTEGER},
+      essay_img1 = #{record.essayImg1,jdbcType=VARCHAR},
+      essay_img2 = #{record.essayImg2,jdbcType=VARCHAR},
+      essay_img3 = #{record.essayImg3,jdbcType=VARCHAR},
+      essay_img4 = #{record.essayImg4,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ncuedu.farm.pojo.Essay">
+    update essay
+    <set>
+      <if test="essayTitle != null">
+        essay_title = #{essayTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="essayContent != null">
+        essay_content = #{essayContent,jdbcType=VARCHAR},
+      </if>
+      <if test="praiseNum != null">
+        praise_num = #{praiseNum,jdbcType=INTEGER},
+      </if>
+      <if test="essayImg1 != null">
+        essay_img1 = #{essayImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="essayImg2 != null">
+        essay_img2 = #{essayImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="essayImg3 != null">
+        essay_img3 = #{essayImg3,jdbcType=VARCHAR},
+      </if>
+      <if test="essayImg4 != null">
+        essay_img4 = #{essayImg4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where essay_id = #{essayId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ncuedu.farm.pojo.Essay">
+    update essay
+    set essay_title = #{essayTitle,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      essay_content = #{essayContent,jdbcType=VARCHAR},
+      praise_num = #{praiseNum,jdbcType=INTEGER},
+      essay_img1 = #{essayImg1,jdbcType=VARCHAR},
+      essay_img2 = #{essayImg2,jdbcType=VARCHAR},
+      essay_img3 = #{essayImg3,jdbcType=VARCHAR},
+      essay_img4 = #{essayImg4,jdbcType=VARCHAR}
+    where essay_id = #{essayId,jdbcType=INTEGER}
+  </update>
+</mapper>
