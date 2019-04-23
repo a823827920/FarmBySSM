@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncuedu.farm.mapper.EssayCustomMapper">
+    <resultMap id="BaseResultMap" type="com.ncuedu.farm.vo.EssayCustom">
+        <id column="essay_id" jdbcType="INTEGER" property="essayId" />
+        <result column="essay_title" jdbcType="VARCHAR" property="essayTitle" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="essay_content" jdbcType="VARCHAR" property="essayContent" />
+        <result column="praise_num" jdbcType="INTEGER" property="praiseNum" />
+        <result column="essay_img1" jdbcType="VARCHAR" property="essayImg1" />
+        <result column="essay_img2" jdbcType="VARCHAR" property="essayImg2" />
+        <result column="essay_img3" jdbcType="VARCHAR" property="essayImg3" />
+        <result column="essay_img4" jdbcType="VARCHAR" property="essayImg4" />
+        <result column="user_name" property="userName"/>
+        <result column="user_img" property="userImg"/>
+    </resultMap>
+
+    <select id="selectEssayById" resultMap="BaseResultMap">
+        select * from essay as a
+        left join user as b
+        on a.user_id=b.user_id
+        where essay_id=#{id}
+    </select>
+
+    <select id="selectEssays" resultMap="BaseResultMap">
+        select * from essay as a
+        left join user as b
+        on a.user_id=b.user_id
+    </select>
+</mapper>

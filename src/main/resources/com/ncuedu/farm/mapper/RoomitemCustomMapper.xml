@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncuedu.farm.mapper.RoomitemCustomMapper">
+    <resultMap id="BaseResultMap" type="com.ncuedu.farm.vo.RoomitemCustom">
+        <id column="item_id" jdbcType="INTEGER" property="itemId" />
+        <result column="plant_id" jdbcType="INTEGER" property="plantId" />
+        <result column="field_id" jdbcType="INTEGER" property="fieldId" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="item_flag" jdbcType="TINYINT" property="itemFlag" />
+        <result column="item_date" jdbcType="TIMESTAMP" property="itemDate" />
+        <result column="item_start" jdbcType="TIMESTAMP" property="itemStart" />
+        <result column="plant_name" property="plantName"/>
+        <result column="user_name" property="userName"/>
+        <result column="loc" property="fieldLoc"/>
+        <result column="item_loc" property="itemLoc"/>
+    </resultMap>
+    <sql id="baseColumn">
+        item_id,a.plant_id,a.field_id,a.user_id,item_flag,item_date,item_start,plant_name,user_name,loc,item_loc
+    </sql>
+    <select id="queryRoomitemsByPage" resultMap="BaseResultMap">
+        select <include refid="baseColumn"/> from roomitem as a
+          left join plant as b on a.plant_id=b.plant_id
+          left join user as c on a.user_id=c.user_id
+          left join field as d on a.field_id=d.id
+          limit #{index},#{limit}
+    </select>
+
+    <select id="queryRoomitemByFieldId" resultMap="BaseResultMap">
+        select <include refid="baseColumn"/> from roomitem as a
+        left join plant as b on a.plant_id=b.plant_id
+        left join user as c on a.user_id=c.user_id
+        left join field as d on a.field_id=d.id
+        where a.field_id =#{id}
+    </select>
+</mapper>

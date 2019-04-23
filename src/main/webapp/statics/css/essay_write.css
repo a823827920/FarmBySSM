@@ -1,0 +1,40 @@
+.layui-container {
+	width: 50%;
+}
+
+.add_img_box {
+	width: 20%;
+	display: inline-block;
+	border: 2px dashed #dbdbdb;
+	height: 0;
+	cursor: pointer;
+	margin-right: 1%;
+	padding-bottom: 28%;
+	background-image: url(../image/add_img.png);
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	float: left;
+}
+.img_box label{
+	font-size: 19px;
+	font-weight: 300 !important;
+	line-height: 2em !important;
+	color: #565a5c !important;
+	margin: 1.7em 0px !important;
+}
+.img_box {
+	width: 100%;
+	overflow: auto;
+	word-break: keep-all;
+}
+
+.layui-input-block {
+	margin-left: 0;
+	margin-top: 10px;
+}
+@media (max-width:768px) {
+	.write_width {
+		width: 100%;
+	}
+}
